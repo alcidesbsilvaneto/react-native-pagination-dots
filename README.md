@@ -1,18 +1,17 @@
 # React Native Pagination Dots
 
 [![npm version](https://img.shields.io/npm/v/react-native-pagination-dots.svg)](https://www.npmjs.com/package/react-native-pagination-dots)
-[![license](https://img.shields.io/npm/l/react-native-pagination-dots.svg)](https://github.com/yourusername/react-native-pagination-dots/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/rn-flexible-dots.svg)](https://github.com/alcidesbsilvaneto/rn-flexible-dots/blob/main/LICENSE)
 
 A highly customizable, animated pagination dots component for React Native applications. Perfect for carousels, onboarding flows, and any content requiring pagination indicators.
 
 ## Features
 
 - 🎨 Fully customizable dot appearance (size, color, shape)
-- ✨ Smooth animations with configurable parameters
+- ✨ Multiple animation types: width, fade, scale, slide, or combo
 - 📦 Support for custom dot components
 - 📱 Works on iOS and Android
 - 🔧 Written in TypeScript with complete type definitions
-
 ## Installation
 
 ```bash
@@ -31,14 +30,14 @@ import { View } from "react-native";
 import PaginationDots from "react-native-pagination-dots";
 
 const MyCarousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeDotIndex, setActiveDotIndex] = useState(0);
   const totalDots = 5;
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       {/* Your carousel/slider component here */}
 
-      <PaginationDots totalDots={totalDots} activeIndex={activeIndex} />
+      <PaginationDots totalDots={totalDots} activeDotIndex={activeDotIndex} />
     </View>
   );
 };
@@ -51,17 +50,21 @@ export default MyCarousel;
 | Prop                | Type                                    | Default         | Description                                     |
 | ------------------- | --------------------------------------- | --------------- | ----------------------------------------------- |
 | `totalDots`         | `number`                                | `required`      | Total number of pagination dots to display      |
-| `activeIndex`       | `number`                                | `required`      | Index of the currently active dot (0-based)     |
-| `dotSize`           | `number`                                | `10`            | Size of the inactive dots (width and height)    |
-| `activeDotWidth`    | `number`                                | `20`            | Width of the active dot                         |
-| `dotSpacing`        | `number`                                | `8`             | Horizontal spacing between dots                 |
-| `dotColor`          | `string`                                | `"#C4C4C4"`     | Color of inactive dots                          |
-| `activeDotColor`    | `string`                                | `"#0099FF"`     | Color of active dot                             |
-| `dotStyle`          | `ViewStyle`                             | `{}`            | Additional style for dots                       |
-| `containerStyle`    | `ViewStyle`                             | `{}`            | Style for the container view                    |
-| `dotBorderRadius`   | `number`                                | `5`             | Border radius of the dots (for rounded corners) |
+| `activeDotIndex`    | `number`                                | `required`      | Zero-based index of the active dot             |
+| `dotColor`          | `string`                                | `"#0E7AFE"`     | Color for dots (deprecated - use activeDotColor and inactiveDotColor instead) |
+| `activeDotColor`    | `string`                                | `undefined`     | Color for the active dot (takes precedence over dotColor) |
+| `inactiveDotColor`  | `string`                                | `undefined`     | Color for inactive dots (defaults to activeDotColor with reduced opacity if only activeDotColor is set) |
+| `dotHeight`         | `number`                                | `8`             | Height for dots                                |
+| `inactiveDotWidth`  | `number`                                | `8`             | Width for inactive dots                        |
+| `activeDotWidth`    | `number`                                | `24`            | Width for the active dot                       |
+| `dotBorderRadius`   | `number`                                | `dotHeight/2`   | Border radius of the dots (for rounded corners) |
+| `dotSpacing`        | `number`                                | `6`             | Spacing between dots                           |
 | `animationDuration` | `number`                                | `300`           | Duration of the animation in milliseconds       |
-| `animationEasing`   | `(value: number) => number`             | `Easing.spring` | Easing function for the animation               |
+| `animationType`     | `"width" \| "fade" \| "scale" \| "slide" \| "combo"` | `"width"` | Type of animation to use                  |
+| `animationEasing`   | `EasingFunction`                        | `Easing.ease`   | Animation easing function                        |
+| `useNativeDriver`   | `boolean`                               | `false`         | Use native driver for animations (note: some properties can't animate with native driver) |
+| `containerStyle`    | `StyleProp<ViewStyle>`                  | `{}`            | Container style overrides                       |
+| `dotStyle`          | `StyleProp<ViewStyle>`                  | `{}`            | Dot style overrides                            |
 | `renderDot`         | `(params: DotRenderProps) => ReactNode` | `undefined`     | Custom render function for dots                 |
 
 ### DotRenderProps
@@ -70,14 +73,38 @@ When providing a custom dot rendering function, you'll receive the following par
 
 ```typescript
 interface DotRenderProps {
+  animatedValue: Animated.Value;
   index: number;
   isActive: boolean;
-  animatedStyle: any; // Animated style object
+  animatedStyles: any; // Animated styles object
 }
 ```
 
-## Advanced Examples
+## Animation Types
 
+The `animationType` prop allows you to choose from several different animation styles:
+
+### width
+
+The default animation type. The active dot expands in width while inactive dots shrink, creating a simple yet effective indicator.
+
+### fade
+
+Inactive dots fade to a lower opacity while the active dot maintains full opacity, creating a subtle visual distinction.
+
+### scale
+
+The active dot scales up in size while inactive dots scale down, creating a dynamic size difference between active and inactive dots.
+
+### slide
+
+Dots slide horizontally to reposition themselves, with the active dot moving to the center of attention. This creates a more dynamic, flowing indicator.
+
+### combo
+
+Combines multiple animation types for a rich, complex animation. The active dot will simultaneously change width, scale, and opacity for maximum visual impact.
+
+## Advanced Examples
 ### Custom Styling
 
 ```jsx
@@ -86,12 +113,13 @@ import PaginationDots from "react-native-pagination-dots";
 // Custom styling example
 <PaginationDots
   totalDots={5}
-  activeIndex={currentIndex}
-  dotSize={12}
+  activeDotIndex={currentIndex}
+  dotHeight={12}
+  inactiveDotWidth={12}
   activeDotWidth={30}
   dotSpacing={10}
-  dotColor="#FF9900"
   activeDotColor="#FF0066"
+  inactiveDotColor="#FF9900"
   dotBorderRadius={6}
   containerStyle={{ marginVertical: 20 }}
 />;
@@ -100,15 +128,17 @@ import PaginationDots from "react-native-pagination-dots";
 ### Custom Animation
 
 ```jsx
-import { Easing } from "react-native-reanimated";
+import { Easing } from "react-native";
 import PaginationDots from "react-native-pagination-dots";
 
 // Custom animation example
 <PaginationDots
   totalDots={5}
-  activeIndex={currentIndex}
+  activeDotIndex={currentIndex}
+  animationType="combo"
   animationDuration={500}
   animationEasing={Easing.bezier(0.25, 0.1, 0.25, 1)}
+  useNativeDriver={true}
 />;
 ```
 
@@ -116,13 +146,15 @@ import PaginationDots from "react-native-pagination-dots";
 
 ```jsx
 import PaginationDots from "react-native-pagination-dots";
+import { View, Animated } from "react-native";
 
 // Custom dot rendering
 <PaginationDots
   totalDots={5}
-  activeIndex={currentIndex}
-  renderDot={({ index, isActive, animatedStyle }) => (
-    <View
+  activeDotIndex={currentIndex}
+  renderDot={({ index, isActive, animatedStyles, animatedValue }) => (
+    <Animated.View
+      key={`dot-${index}`}
       style={[
         {
           width: isActive ? 30 : 10,
@@ -132,7 +164,7 @@ import PaginationDots from "react-native-pagination-dots";
           margin: 4,
           transform: [{ scale: isActive ? 1.2 : 1 }],
         },
-        animatedStyle,
+        animatedStyles,
       ]}
     >
       {isActive && (
