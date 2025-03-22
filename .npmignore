@@ -1,0 +1,53 @@
+# Source files
+src/
+
+# Source maps
+*.map
+
+# Tests
+__tests__/
+*.test.js
+*.test.jsx
+*.test.ts
+*.test.tsx
+jest.config.js
+coverage/
+
+# Configuration files
+.eslintrc
+.eslintrc.js
+.eslintignore
+.prettier*
+prettier.config.js
+.editorconfig
+tsconfig.json
+babel.config.js
+metro.config.js
+
+# Build tools
+node_modules/
+.github/
+webpack.config.js
+rollup.config.js
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Development docs
+docs/
+examples/
+demo/
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Miscellaneous
+.vscode/
+.idea/
+*.log
+.DS_Store
+.env*
+tmp/
+temp/
+

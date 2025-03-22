@@ -1,0 +1,60 @@
+{
+  "name": "react-native-pagination-dots",
+  "version": "1.0.0",
+  "description": "A customizable pagination dots component for React Native",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint --ext .ts,.tsx src/",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "react-native",
+    "pagination",
+    "dots",
+    "carousel",
+    "swiper",
+    "indicator",
+    "component",
+    "ui",
+    "animation"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://your-website.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/react-native-pagination-dots.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/react-native-pagination-dots/issues"
+  },
+  "homepage": "https://github.com/yourusername/react-native-pagination-dots#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.70.0",
+    "typescript": "^4.9.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-react-native": "^4.0.0"
+  }
+}
+
