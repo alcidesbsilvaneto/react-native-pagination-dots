@@ -28,19 +28,19 @@
     "animation"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "your.email@example.com",
-    "url": "https://your-website.com"
+    "name": "Alcides Bezerra",
+    "email": "alcides.bsilvaneto@gmail.com",
+    "url": "https://github.com/alcidesbsilvaneto"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/react-native-pagination-dots.git"
+    "url": "git+https://github.com/alcidesbsilvaneto/rn-flexible-dots.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/react-native-pagination-dots/issues"
+    "url": "https://github.com/alcidesbsilvaneto/rn-flexible-dots/issues"
   },
-  "homepage": "https://github.com/yourusername/react-native-pagination-dots#readme",
+  "homepage": "https://github.com/alcidesbsilvaneto/rn-flexible-dots#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-native": ">=0.60.0"
@@ -55,6 +55,6 @@
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "eslint-plugin-react-native": "^4.0.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
-
