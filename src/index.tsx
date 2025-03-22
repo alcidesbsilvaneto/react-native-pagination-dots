@@ -96,7 +96,7 @@ const PaginationDots = ({
   useNativeDriver = false,
   animationType = "width",
   renderDot,
-}) => {
+}: PaginationDotsProps): ReactElement => {
   // Create ref for animated values (one per dot)
   const animatedValues = useRef<Animated.Value[]>([]);
 
@@ -311,8 +311,9 @@ const PaginationDots = ({
   ]);
 
   return (
-    <View style={[styles.container, containerStyle]}>{dots}</View>
-  ) as ReactElement;
+    // @ts-ignore
+    <View style={[styles.container, containerStyle]}>{dots}</View> as ReactElement
+  );
 };
 
 const styles = StyleSheet.create({

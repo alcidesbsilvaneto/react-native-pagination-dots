@@ -1,5 +1,5 @@
 {
-  "name": "react-native-pagination-dots",
+  "name": "rn-flexible-dots",
   "version": "1.0.0",
   "description": "A customizable pagination dots component for React Native",
   "main": "lib/index.js",

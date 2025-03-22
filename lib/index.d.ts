@@ -61,23 +61,5 @@ export interface PaginationDotsProps {
         animatedStyles: any;
     }) => React.ReactNode;
 }
-declare const _default: React.MemoExoticComponent<({ totalDots, activeDotIndex, containerStyle, dotStyle, dotColor, activeDotColor, inactiveDotColor, dotHeight, inactiveDotWidth, activeDotWidth, dotBorderRadius, dotSpacing, animationDuration, animationEasing, useNativeDriver, animationType, renderDot, }: {
-    totalDots: any;
-    activeDotIndex: any;
-    containerStyle: any;
-    dotStyle: any;
-    dotColor?: string | undefined;
-    activeDotColor: any;
-    inactiveDotColor: any;
-    dotHeight?: number | undefined;
-    inactiveDotWidth?: number | undefined;
-    activeDotWidth?: number | undefined;
-    dotBorderRadius: any;
-    dotSpacing?: number | undefined;
-    animationDuration?: number | undefined;
-    animationEasing?: EasingFunction | undefined;
-    useNativeDriver?: boolean | undefined;
-    animationType?: string | undefined;
-    renderDot: any;
-}) => React.ReactElement<any, string | React.JSXElementConstructor<any>>>;
+declare const _default: React.MemoExoticComponent<({ totalDots, activeDotIndex, containerStyle, dotStyle, dotColor, activeDotColor, inactiveDotColor, dotHeight, inactiveDotWidth, activeDotWidth, dotBorderRadius, dotSpacing, animationDuration, animationEasing, useNativeDriver, animationType, renderDot, }: PaginationDotsProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>>;
 export default _default;
